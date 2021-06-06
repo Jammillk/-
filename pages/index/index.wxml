@@ -2,4 +2,20 @@
   <!-- 搜索框 开始 -->
   <SearchInput></SearchInput>
   <!-- 搜索框 开始 -->
+  <!-- 轮播图 开始 -->
+  <view class="index_swiper" hover-class="none" hover-stop-propagation="false">
+    <!-- 
+      swiper存在默认的宽度和高度 100% * 150px
+      image也存在默认的宽度高度 320px * 240px
+      可查知，原图宽高 750 * 340
+      接下来，让它高度自适应，宽度100%
+      并且，让swiper高和图片变成一样
+     -->
+    <swiper indicator-dots="{{true}}" autoplay="{{true}}" interval="{{3000}}" duration="{{500}}" circular="{{true}}">
+      <swiper-item wx:for="{{swiperList}}" wx:key="goods_id">
+        <image class="swiper-image" src="{{item.image_src}}" mode="widthFix"/>
+      </swiper-item>
+    </swiper>
+  </view>
+  <!-- 轮播图 结束 -->
 </view>
