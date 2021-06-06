@@ -1,6 +1,5 @@
-<view class="" hover-class="none" hover-stop-propagation="false">
-  首页
-  <text class="iconfont icon-shoucang1" selectable="false" space="false" decode="false">
-    
-  </text>
+<view class="myshop_index" hover-class="none" hover-stop-propagation="false">
+  <!-- 搜索框 开始 -->
+  <SearchInput></SearchInput>
+  <!-- 搜索框 开始 -->
 </view>
