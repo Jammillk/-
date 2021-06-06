@@ -4,7 +4,9 @@ import { request } from "../../request/index.js";
 Page({
   data: {
     // 轮播图数组
-    swiperList: []
+    swiperList: [],
+    // 导航数组
+    catesList: []
   },
   // 页面开始加载的时候就会触发的事件
   onLoad: function(options){
@@ -19,11 +21,25 @@ Page({
     //   }
     // });
     // 开启ES6转ES5才成功，看来这些还是有、、问题的
+    this.getSwiperList();
+    this.getCateList();
+  },
+  // 获取轮播图数据
+  getSwiperList(){
     request({url:"https://api-hmugo-web.itheima.net/api/public/v1/home/swiperdata"})
     .then(result=>{
         this.setData({
           swiperList: result.data.message
         })
     })
-  }
+  }, 
+  // 获取分类导航数组
+  getCateList(){
+    request({url:"https://api-hmugo-web.itheima.net/api/public/v1/home/catitems"})
+    .then(result=>{
+        this.setData({
+          catesList: result.data.message
+        })
+    })
+  },
 });

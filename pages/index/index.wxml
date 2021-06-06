@@ -2,6 +2,7 @@
   <!-- 搜索框 开始 -->
   <SearchInput></SearchInput>
   <!-- 搜索框 开始 -->
+
   <!-- 轮播图 开始 -->
   <view class="index_swiper" hover-class="none" hover-stop-propagation="false">
     <!-- 
@@ -18,4 +19,14 @@
     </swiper>
   </view>
   <!-- 轮播图 结束 -->
+
+  <!-- 导航 开始 -->
+  <view class="index_cate" hover-class="none" hover-stop-propagation="false">
+    <navigator wx:for="{{catesList}}" wx:key="name">
+      <image class="" src="{{item.image_src}}" mode="widthFix" lazy-load="false" binderror="" bindload="">
+      </image>
+    </navigator>
+  </view>
+  <!-- 导航 结束 -->
+
 </view>
