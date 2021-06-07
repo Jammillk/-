@@ -56,7 +56,7 @@ Page({
   },
   getCates() {
     request({
-        url: "https://api-hmugo-web.itheima.net/api/public/v1/categories"
+        url: "/categories"
       })
       .then(res => {
         // console.log(res)
