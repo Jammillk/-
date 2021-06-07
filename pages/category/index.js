@@ -38,7 +38,7 @@ Page({
       this.getCates();
     } else {
       // 有旧数据，过期时间10s ---》5分钟
-      if (Date.now() - Cates.time > 1000 * 10) {
+      if (Date.now() - Cates.time > 1000 * 60 * 5) {
         // 时间chuo，10s+
         // 超时了，获取新数据
         this.getCates();

@@ -45,6 +45,7 @@ Page({
 
   // 获得商品列表数据
   async getGoodsList() {
+    
     const res = await request({
       url: "/goods/search",
       data: this.QueryParams
