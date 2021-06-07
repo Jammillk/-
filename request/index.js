@@ -7,7 +7,7 @@ export const request = (params) => {
             // 封装url
             url: baseUrl + params.url,
             success: (result) => {
-                resolve(result);
+                resolve(result.data.message);
             },
             fail: (err) => {
                 reject(err);

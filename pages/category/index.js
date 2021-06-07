@@ -3,6 +3,7 @@ import {
   request
 } from "../../request/index.js";
 
+import regeneratorRuntime from '../../lib/runtime/runtime'
 Page({
 
   /**
@@ -35,13 +36,13 @@ Page({
       console.log('获取新数据')
       // 不存在，则获取数据
       this.getCates();
-    }else{
+    } else {
       // 有旧数据，过期时间10s ---》5分钟
-      if(Date.now() - Cates.time > 1000 * 10){
+      if (Date.now() - Cates.time > 1000 * 10) {
         // 时间chuo，10s+
         // 超时了，获取新数据
         this.getCates();
-      }else{
+      } else {
         console.log('可以用旧的数据')
         this.Cates = Cates.data
         let leftMenuList = this.Cates.map(v => v.cat_name)
@@ -54,27 +55,47 @@ Page({
 
     }
   },
-  getCates() {
-    request({
-        url: "/categories"
-      })
-      .then(res => {
-        // console.log(res)
-        this.Cates = res.data.message
-        // 把接口的数据存到本地存储中
-        wx.setStorageSync("cates", {
-          time: Date.now(),
-          data: this.Cates
-        });
-        // 构造左侧大菜单数据
-        let leftMenuList = this.Cates.map(v => v.cat_name)
-        // 构造右侧商品数据
-        let rightContent = this.Cates[0].children;
-        this.setData({
-          leftMenuList,
-          rightContent
-        })
-      })
+  // 同步
+  async getCates() {
+    // request({
+    //     url: "/categories"
+    //   })
+    //   .then(res => {
+    //     // console.log(res)
+    //     this.Cates = res.data.message
+    //     // 把接口的数据存到本地存储中
+    //     wx.setStorageSync("cates", {
+    //       time: Date.now(),
+    //       data: this.Cates
+    //     });
+    //     // 构造左侧大菜单数据
+    //     let leftMenuList = this.Cates.map(v => v.cat_name)
+    //     // 构造右侧商品数据
+    //     let rightContent = this.Cates[0].children;
+    //     this.setData({
+    //       leftMenuList,
+    //       rightContent
+    //     })
+    //   })
+    // 使用es7的async
+    const res = await request({
+      url: "/categories"
+    });
+    // this.Cates = res.data.message
+    this.Cates = res
+    // 把接口的数据存到本地存储中
+    wx.setStorageSync("cates", {
+      time: Date.now(),
+      data: this.Cates
+    });
+    // 构造左侧大菜单数据
+    let leftMenuList = this.Cates.map(v => v.cat_name)
+    // 构造右侧商品数据
+    let rightContent = this.Cates[0].children;
+    this.setData({
+      leftMenuList,
+      rightContent
+    })
   },
   handleItemTap(e) {
     // console.log(e)
