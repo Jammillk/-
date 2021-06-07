@@ -12,7 +12,9 @@ Page({
     // 左侧菜单数据
     leftMenuList: [],
     // 右侧商品数据
-    rightContent: []
+    rightContent: [],
+    // 被点击的左侧的菜单
+    currentIndex: 0
   },
   // 接口的返回数据
   Cates: [],
@@ -31,7 +33,7 @@ Page({
         // console.log(res)
         this.Cates = res.data.message
         // 构造左侧大菜单数据
-        let leftMenuList = this.Cates.map(v=>v.cat_name)
+        let leftMenuList = this.Cates.map(v => v.cat_name)
         // 构造右侧商品数据
         let rightContent = this.Cates[0].children;
         this.setData({
@@ -39,5 +41,19 @@ Page({
           rightContent
         })
       })
+  },
+  handleItemTap(e) {
+    // console.log(e)
+    // 获取被点击的标题身上的索引，给data中的currentIndex赋值
+    const {
+      index
+    } = e.currentTarget.dataset;
+    // 根据不同的索引渲染不同的数据
+    let rightContent = this.Cates[index].children;
+    this.setData({
+      currentIndex: index,
+      rightContent
+    })
+   
   }
 })
