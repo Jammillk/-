@@ -23,7 +23,34 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getCates();
+    /**
+     * 添加缓存，看看本地存储中有没有旧数据
+     * 没有旧数据，直接发送新请求
+     * 有旧数据，且没有过期，就取本地的旧数据
+     */
+    const Cates = wx.getStorageSync("cates");
+    if (!Cates) {
+      console.log('获取新数据')
+      // 不存在，则获取数据
+      this.getCates();
+    }else{
+      // 有旧数据，过期时间10s ---》5分钟
+      if(Date.now() - Cates.time > 1000 * 10){
+        // 时间chuo，10s+
+        // 超时了，获取新数据
+        this.getCates();
+      }else{
+        console.log('可以用旧的数据')
+        this.Cates = Cates.data
+        let leftMenuList = this.Cates.map(v => v.cat_name)
+        let rightContent = this.Cates[0].children;
+        this.setData({
+          leftMenuList,
+          rightContent
+        })
+      }
+
+    }
   },
   getCates() {
     request({
@@ -32,6 +59,13 @@ Page({
       .then(res => {
         // console.log(res)
         this.Cates = res.data.message
+        // 把接口的数据存到本地存储中
+        wx.setStorageSync("cates", {
+          time: Date.now(),
+          data: this.Cates
+        });
+
+
         // 构造左侧大菜单数据
         let leftMenuList = this.Cates.map(v => v.cat_name)
         // 构造右侧商品数据
@@ -54,6 +88,6 @@ Page({
       currentIndex: index,
       rightContent
     })
-   
+
   }
 })
