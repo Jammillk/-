@@ -13,6 +13,8 @@ Page({
   data: {
     goodsObj: {}
   },
+  // 商品对象
+  GoodsInfo: {},
 
   /**
    * 生命周期函数--监听页面加载
@@ -31,6 +33,7 @@ Page({
         goods_id
       }
     })
+    this.GoodsInfo = goodsObj
     this.setData({
       goodsObj: {
         goods_name: goodsObj.goods_name,
@@ -38,8 +41,18 @@ Page({
         pics: goodsObj.pics,
         // iphone部分手机不识别webp图片格式，
         // 前端可以临时自己改，要确保后台存在别的格式的图片
-        goods_introduce: goodsObj.goods_introduce.replace(/\.webp/g,'.jpg'),
+        goods_introduce: goodsObj.goods_introduce.replace(/\.webp/g, '.jpg'),
       }
+    })
+  },
+  handlePreviewImage(e) {
+    // 构造要预览的图片数组
+    const urls = this.GoodsInfo.pics.map(v => v.pics_mid);
+    // 接收传递过来的图片url
+    const current = e.currentTarget.dataset.url;
+    wx.previewImage({
+      current: current, // 当前显示图片的http链接
+      urls: urls // 需要预览的图片http链接列表
     })
   }
 })
