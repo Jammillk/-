@@ -2,31 +2,40 @@
   <!-- 搜索框 开始 -->
   <SearchInput></SearchInput>
   <!-- 搜索框 开始 -->
-
   <!-- 轮播图 开始 -->
   <view class="index_swiper" hover-class="none" hover-stop-propagation="false">
-    <!-- 
-      swiper存在默认的宽度和高度 100% * 150px
+    <!-- swiper存在默认的宽度和高度 100% * 150px
       image也存在默认的宽度高度 320px * 240px
       可查知，原图宽高 750 * 340
       接下来，让它高度自适应，宽度100%
-      并且，让swiper高和图片变成一样
-     -->
+      并且，让swiper高和图片变成一样 -->
     <swiper indicator-dots="{{true}}" autoplay="{{true}}" interval="{{3000}}" duration="{{500}}" circular="{{true}}">
       <swiper-item wx:for="{{swiperList}}" wx:key="goods_id">
-        <image class="swiper-image" src="{{item.image_src}}" mode="widthFix"/>
+        <image class="swiper-image" src="{{item.image_src}}" mode="widthFix" />
       </swiper-item>
     </swiper>
   </view>
   <!-- 轮播图 结束 -->
-
   <!-- 导航 开始 -->
   <view class="index_cate" hover-class="none" hover-stop-propagation="false">
     <navigator wx:for="{{catesList}}" wx:key="name">
-      <image class="" src="{{item.image_src}}" mode="widthFix" lazy-load="false" binderror="" bindload="">
-      </image>
+      <image class="" src="{{item.image_src}}" mode="widthFix" lazy-load="false" binderror="" bindload=""></image>
     </navigator>
   </view>
   <!-- 导航 结束 -->
-
+  
+  <!-- 楼层 开始 -->
+  <view class="index-floor">
+    <view wx:for="{{floorList}}" wx:for-item="item" wx:for-index="index" wx:key="name" class="floor-list">
+      <view class="floor-title">
+        <image mode="widthFix" src="{{item.floor_title.image_src}}" />
+      </view>
+      <view class="floor-content">
+        <navigator wx:for="{{item.product_list}}" wx:for-item="item1" wx:for-index="indey" wx:key="name" url="{{item1.navigator_url}}">
+          <image mode="{{indey === 0 ? 'widthFix':'scaleToFill'}}" src="{{item1.image_src}}" />
+        </navigator>
+      </view>
+    </view>
+  </view>
+  <!-- 楼层 结束 -->
 </view>
