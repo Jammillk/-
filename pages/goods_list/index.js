@@ -21,7 +21,7 @@ Page({
       value: "价格",
       isActive: false
     }],
-    goodsList:[]
+    goodsList: []
   },
 
   // 接口要的参数
@@ -31,6 +31,10 @@ Page({
     pagenum: 1,
     pagesize: 10
   },
+  /**
+   * 总页数
+   */
+  totalPages: 1,
   /**
    * 生命周期函数--监听页面加载
    */
@@ -45,8 +49,13 @@ Page({
       url: "/goods/search",
       data: this.QueryParams
     })
+    const total = res.total
+    // 计算程序的总页数
+    this.totalPages = Math.ceil(total / this.QueryParams.pagesize)
     this.setData({
-      goodsList:res.goods
+      // goodsList: res.goods
+      // 拼接数组
+      goodsList: [...this.data.goodsList,...res.goods]
     })
   },
 
@@ -66,5 +75,22 @@ Page({
     this.setData({
       tabs
     })
+  },
+
+  // 滚动条触底事件
+  onReachBottom() {
+    // 判断是否有下一页
+    if (this.QueryParams.pagenum >= this.totalPages) {
+      // console.log('没有下一页数据了')
+      wx.showToast({
+        title: '没有下一页数据了',
+        icon: 'loading'
+      });
+    } else {
+      // console.log('还有下一页数据')
+      this.QueryParams.pagenum++;
+      this.getGoodsList();
+    }
+
   }
 })
