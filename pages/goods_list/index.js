@@ -4,6 +4,9 @@ import {
 } from "../../request/index.js";
 
 import regeneratorRuntime from '../../lib/runtime/runtime'
+
+
+
 Page({
   data: {
     tabs: [{
