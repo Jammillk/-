@@ -57,6 +57,9 @@ Page({
       // 拼接数组
       goodsList: [...this.data.goodsList,...res.goods]
     })
+    // 关闭下拉刷新的窗口
+    wx.stopPullDownRefresh();
+      
   },
 
 
@@ -91,6 +94,15 @@ Page({
       this.QueryParams.pagenum++;
       this.getGoodsList();
     }
+  },
 
+  // 下拉刷新事件，就要把数据全部清空，然后再
+  onPullDownRefresh(){
+    // 重置数据
+    this.setData({
+      goodsList:[]
+    })
+    this.QueryParams.pagenum = 1
+    this.getGoodsList()
   }
 })
