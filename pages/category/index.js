@@ -14,7 +14,9 @@ Page({
     // 右侧商品数据
     rightContent: [],
     // 被点击的左侧的菜单
-    currentIndex: 0
+    currentIndex: 0,
+    // 右侧内容滚动条与顶部的距离
+    scrollTop: 0
   },
   // 接口的返回数据
   Cates: [],
@@ -64,8 +66,6 @@ Page({
           time: Date.now(),
           data: this.Cates
         });
-
-
         // 构造左侧大菜单数据
         let leftMenuList = this.Cates.map(v => v.cat_name)
         // 构造右侧商品数据
@@ -86,8 +86,8 @@ Page({
     let rightContent = this.Cates[index].children;
     this.setData({
       currentIndex: index,
-      rightContent
+      rightContent,
+      scrollTop: 0
     })
-
   }
 })
