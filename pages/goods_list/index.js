@@ -1,4 +1,9 @@
-// pages/goods_list/index.js
+// pages/goodsList/index.js
+import {
+  request
+} from "../../request/index.js";
+
+import regeneratorRuntime from '../../lib/runtime/runtime'
 Page({
   data: {
     tabs: [{
@@ -15,15 +20,37 @@ Page({
       id: 2,
       value: "价格",
       isActive: false
-
-    }, ]
+    }],
+    goodsList:[]
   },
 
+  // 接口要的参数
+  QueryParams: {
+    query: "",
+    cid: "",
+    pagenum: 1,
+    pagesize: 10
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.QueryParams.cid = options.cid
+    this.getGoodsList()
   },
+
+  // 获得商品列表数据
+  async getGoodsList() {
+    const res = await request({
+      url: "/goods/search",
+      data: this.QueryParams
+    })
+    this.setData({
+      goodsList:res.goods
+    })
+  },
+
+
   // 标题点击事件
   handleTabsItemChange(e) {
     // 获取被点击的标题索引
