@@ -1,0 +1,21 @@
+/* pages/category/index.wxss */
+page{
+    height: 100%;
+}
+.cates{
+    height: 100%;
+    .cates_container{
+        // 注意这里的用法
+        height: ~'calc( 100vh - 90rpx)';
+        display: flex;
+        .left_menu{
+            // 子项，高度100%
+            flex: 2;
+            background-color: aqua;
+        }
+        .right_content{
+            flex: 5;
+            background-color: lawngreen;
+        }
+    }
+}
