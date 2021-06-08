@@ -1,66 +1,49 @@
 // pages/user/index.js
+
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    userInfo: '',
+    collectNum:0
   },
-
   /**
-   * 生命周期函数--监听页面加载
+   * 获取用户信息
+   * @param {*} e 
    */
-  onLoad: function (options) {
-
+   getUserProfile(e){
+    // const {userInfo} = e.detail;
+    // wx.setStorageSync("userinfo", userInfo);
+    // this.setData({
+    //   userInfo
+    // })
+    wx.getUserProfile({
+      desc: '用于完善会员资料', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
+      success: (res) => {
+        const userInfo = res.userInfo; 
+        console.log(userInfo)
+        wx.setStorageSync("userInfo", userInfo);
+        this.setData({
+          userInfo: res.userInfo
+        })
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
+  onShow(){
+    // 
+    const userInfo = wx.getStorageSync("userInfo");
+    const collect = wx.getStorageSync("collect");
+    this.setData({
+      userInfo,
+      collectNum:collect.length
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  handleRefund(){
+    wx.showToast({
+      title: '暂不支持该功能~',
+      mask: true
+    });
   }
 })
