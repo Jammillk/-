@@ -1,11 +1,23 @@
 // pages/cart/index.js
+import {
+  openSetting,
+  chooseAddress,
+  getSetting
+} from '../../utils/asyncWX'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    address:{}
+  },
+  onShow(){
+    const address = wx.getStorageSync("address");
+    this.setData({
+      address
+    })
+  
   },
 
   /**
@@ -14,53 +26,21 @@ Page({
   onLoad: function (options) {
 
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
+  async handleChooseAddress() {
+    try {
+      const res1 = await getSetting();
+      const scopeAddress = res1.authSetting["scope.address"]
+      // 2.判断权限状态
+      if (scopeAddress === false) {
+        // 用户拒接过授予权限，诱导用户打开授权界面
+        await openSetting();
+      }
+      // 3.调用获取地址API
+      let address = await chooseAddress();
+      address.all=address.provinceName+address.cityName+address.countyName+address.detailInfo
+      wx.setStorageSync("address", address);
+    } catch (err) {
+      console.log(err)
+    }
   }
 })
