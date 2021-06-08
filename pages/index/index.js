@@ -1,65 +1,109 @@
-// 引入用来发送请求的方法，要把路径补全！
-import {
-  request
-} from "../../request/index.js";
-import regeneratorRuntime from '../../lib/runtime/runtime'
-
+import { request } from '../../request/index.js'
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-    // 轮播图数组
+    // 轮播图
     swiperList: [],
-    // 导航数组
-    catesList: [],
-    // 楼层数据
-    floorList: []
+    // 导航菜单
+    categoryList:[],
+    // 楼层
+    floorList:[]
   },
-  // 页面开始加载的时候就会触发的事件
+  /**
+   * 网络请求的代码
+   * @param {*} options 
+   */
+  async getSwiperListData(){
+    const swiper = await request({
+      url: '/home/swiperdata'
+    })
+    const new_swiper = swiper.map(item=>({...item,navigator_url:item.navigator_url.replace(/main/,"index")}))
+    this.setData({
+      swiperList:new_swiper
+    })
+  },
+  async getCategoryListData(){
+    const category = await request({
+      url: '/home/catitems'
+    })
+    this.setData({
+      categoryList:category
+    })
+  },
+  async getFloorListData(){
+    const floor = await request({
+      url: '/home/floordata'
+    })
+    const new_floor=floor.map(item=>{
+      return {...item,product_list:item.product_list.map(item1=>{
+        return  {...item1,navigator_url:item1.navigator_url.replace('?','/index?')}
+      })}
+    })
+    this.setData({
+      floorList:new_floor
+    })
+  },
+  /**
+   * 生命周期函数--监听页面加载
+   */
   onLoad: function (options) {
-    // 1. 发送异步请求获取轮播图数据
-    // 优先的手段可以通过es6的promise来解决
-    // wx.request({
-    //   url: '/home/swiperdata',
-    //   success: (result)=>{
-    //     this.setData({
-    //       swiperList: result.data.message
-    //     })
-    //   }
-    // });
-    // 上面的开启ES6转ES5才成功，看来这些还是有、、问题的
-    this.getSwiperList();
-    this.getCateList();
-    this.getFloorList();
+    // 获取轮播图数据
+    this.getSwiperListData()
+    // 获取导航菜单数据
+    this.getCategoryListData()
+    // 获取楼层数据
+    this.getFloorListData()
   },
-  // 获取轮播图数据
-  getSwiperList() {
-    request({
-        url: "/home/swiperdata"
-      })
-      .then(result => {
-        this.setData({
-          swiperList: result
-        })
-      })
+
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onReady: function () {
+
   },
-  // 获取分类导航数据
-  getCateList() {
-    request({
-        url: "/home/catitems"
-      })
-      .then(result => {
-        this.setData({
-          catesList: result
-        })
-      })
-  }, // 获取楼层数据
-  getFloorList() {
-    request({
-        url: "/home/floordata"
-      })
-      .then(result => {
-        this.setData({
-          floorList: result
-        })
-      })
+
+  /**
+   * 生命周期函数--监听页面显示
+   */
+  onShow: function () {
+
   },
-});
+
+  /**
+   * 生命周期函数--监听页面隐藏
+   */
+  onHide: function () {
+
+  },
+
+  /**
+   * 生命周期函数--监听页面卸载
+   */
+  onUnload: function () {
+
+  },
+
+  /**
+   * 页面相关事件处理函数--监听用户下拉动作
+   */
+  onPullDownRefresh: function () {
+
+  },
+
+  /**
+   * 页面上拉触底事件的处理函数
+   */
+  onReachBottom: function () {
+
+  },
+
+  /**
+   * 用户点击右上角分享
+   */
+  onShareAppMessage: function () {
+
+  }
+})

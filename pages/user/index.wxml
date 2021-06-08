@@ -15,7 +15,7 @@
   <view class="loginAndReg">
     <text class="info">登录领福利啦~</text>
     <view class="button">
-      <button class="login"   bindtap="getUserProfile">登录</button>
+      <button class="login" bindtap="getUserProfile">登录</button>
       <button class="register">注册</button>
     </view>
   </view>
@@ -39,7 +39,7 @@
     </view>
     <!-- 我的订单 -->
     <view class="order">
-      <view class="order-top"> 我的订单</view>
+      <view class="order-top">我的订单</view>
       <view class="order-content">
         <navigator class="content-item" url="/pages/order/index?type=1">
           <text class="iconfont order-icon icon-dingdan"></text>
@@ -63,31 +63,49 @@
     <view class="other">
       <view class="other-item">
         <view class="iconAndTitle">
-          <view class="info"><text class="icon iconfont icon-daishouhuo2"/> 收货地址管理</view>
+          <view class="info">
+            <text class="icon iconfont icon-daishouhuo2" />
+            收货地址管理
+          </view>
         </view>
         <text class="iconfont icon-jiantou"></text>
       </view>
       <view class="other-item">
         <view class="iconAndTitle">
-          <button class="info" open-type="contact"><text class="icon iconfont icon-kefu"/> 联系客服</button>
+          <button class="info" open-type="contact">
+            <text class="icon iconfont icon-kefu" />
+            联系客服
+          </button>
         </view>
         <text class="iconfont icon-jiantou"></text>
       </view>
       <view class="other-item">
         <view class="iconAndTitle">
-          <button class="info" open-type="feedback"><text class="icon iconfont icon-juminyijian"/> 意见反馈</button>
+          <navigator url="/pages/feedback/index">
+            <button class="info" open-type="feedback">
+              <text class="icon iconfont icon-juminyijian" />
+              意见反馈
+            </button>
+            
+          </navigator>
         </view>
         <text class="iconfont icon-jiantou"></text>
       </view>
       <view class="other-item">
         <view class="iconAndTitle">
-          <view class="info"><text class="icon iconfont icon-iconzhengli-"/> 关于我们</view>
+          <view class="info">
+            <text class="icon iconfont icon-iconzhengli-" />
+            关于我们
+          </view>
         </view>
         <text class="iconfont icon-jiantou"></text>
       </view>
       <view class="other-item">
         <view class="iconAndTitle">
-          <button class="info" open-type="share"><text class="icon iconfont icon-tuijian"/>  把应用推荐给其他人</button>
+          <button class="info" open-type="share">
+            <text class="icon iconfont icon-tuijian" />
+            把应用推荐给其他人
+          </button>
         </view>
         <text class="iconfont icon-jiantou"></text>
       </view>
