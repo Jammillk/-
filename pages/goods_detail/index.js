@@ -51,7 +51,7 @@ Page({
     // 接收传递过来的图片url
     const current = e.currentTarget.dataset.url;
     wx.previewImage({
-      current: current, // 当前显示图片的http链接
+      current:   current, // 当前显示图片的http链接
       urls: urls // 需要预览的图片http链接列表
     })
   }

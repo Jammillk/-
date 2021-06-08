@@ -19,3 +19,47 @@
         <rich-text class="" nodes="{{goodsObj.goods_introduce}}"></rich-text>
     </views>
 </view>
+<!-- 底部工具栏 -->
+<!-- <view class="btm_tool">
+    <view class="tool_item">
+        <view class="iconfont icon-kefu"></view>
+        <view>联系客服</view>
+    </view>
+    <view class="tool_item">
+        <view class="iconfont icon-yixianshi-"></view>
+        <view>分享</view>
+    </view>
+    <view class="tool_item">
+        <view class="iconfont icon-gouwuche"></view>
+        <view>购物车</view>
+    </view>
+    <view class="tool_item btn_cart">
+        加入购物车
+    </view>
+    <view class="tool_item btn_buy">
+        立即购买
+    </view>
+</view> -->
+<!-- 底部栏 -->
+<view class="btn-tool">
+  <view class="tool-item">
+    <text class="iconfont icon-kefu" />
+    <view>客服</view>
+    <button open-type="contact" class="contact"/>
+  </view>
+  <view class="tool-item">
+    <text class="iconfont icon-yixianshi-" />
+    <view>分享</view>
+    <button open-type="share" class="contact"/>
+  </view>
+  <navigator url="/pages/cart/index" class="tool-item" open-type="switchTab">
+    <text class="iconfont icon-gouwuche" />
+    <view>购物车</view>
+  </navigator>
+  <view class="tool-item btn-cart" bind:tap="handleCartAdd">
+    <view>加入购物车</view>
+  </view>
+  <view class="tool-item btn-buy">
+    <view>立即购买</view>
+  </view>
+</view>

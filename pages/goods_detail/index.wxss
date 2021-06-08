@@ -1,3 +1,6 @@
+page {
+  padding-bottom: 90rpx;
+}
 .detail_swiper swiper {
   height: 65vw;
   text-align: center;
@@ -44,4 +47,45 @@
   color: var(--themeColor);
   font-weight: 600;
   padding: 20rpx;
+}
+.btn-tool {
+  border-top: 1rpx solid #ccc;
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 90rpx;
+  background-color: #fff;
+}
+.btn-tool .tool-item {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 24rpx;
+}
+.btn-tool .tool-item .contact {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0;
+}
+.btn-tool .btn-cart {
+  flex: 2;
+  background-color: #ffa500;
+  color: #fff;
+  font-size: 30rpx;
+  font-weight: 600;
+}
+.btn-tool .btn-buy {
+  flex: 2;
+  background-color: #eb4450;
+  color: #fff;
+  font-size: 30rpx;
+  font-weight: 600;
 }
