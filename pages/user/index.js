@@ -33,7 +33,7 @@ Page({
     })
   },
   onShow(){
-    // 
+    // ||[]
     const userInfo = wx.getStorageSync("userInfo");
     const collect = wx.getStorageSync("collect");
     this.setData({
