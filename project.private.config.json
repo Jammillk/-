@@ -65,6 +65,11 @@
           "pathName": "pages/order/index",
           "query": "type=1",
           "scene": null
+        },
+        {
+          "name": "意见反馈",
+          "pathName": "pages/feedback/index",
+          "scene": null
         }
       ]
     }

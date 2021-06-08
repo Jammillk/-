@@ -81,13 +81,10 @@
       </view>
       <view class="other-item">
         <view class="iconAndTitle">
-          <navigator url="/pages/feedback/index">
             <button class="info" open-type="feedback">
               <text class="icon iconfont icon-juminyijian" />
               意见反馈
             </button>
-            
-          </navigator>
         </view>
         <text class="iconfont icon-jiantou"></text>
       </view>
