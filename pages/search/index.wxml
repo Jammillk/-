@@ -17,6 +17,7 @@
   </view>
 </view>
 <!-- <image class="{{hasGoods?'image':'hasGoods'}}" src="../../assets/img/search.jpg" mode="widthFix"/> -->
+<image class="{{hasGoods?'image':'hasGoods'}}" src="../../assets/img/mysearch.jpeg" mode="widthFix"/>
 <view class="noGoods" wx:if="{{!hasGoods}}">
   搜索不到宝贝...
 </view>

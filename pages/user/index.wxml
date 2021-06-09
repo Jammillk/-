@@ -11,7 +11,7 @@
   </view>
 </view>
 <view class="noUser" wx:else="{{!userInfo}}">
-  <image class="avatar" src="../../assets/img/avatar.jpg" mode="widthFix"></image>
+  <image class="avatar" src="../../assets/img/moving.gif" mode="widthFix"></image>
   <view class="loginAndReg">
     <text class="info">登录领福利啦~</text>
     <view class="button">
