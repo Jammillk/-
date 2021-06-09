@@ -59,7 +59,7 @@
   <view class="tool-item btn-cart" bind:tap="handleCartAdd">
     <view>加入购物车</view>
   </view>
-  <view class="tool-item btn-buy">
+  <view class="tool-item btn-buy" bind:tap="handlePay">
     <view>立即购买</view>
   </view>
 </view>

@@ -119,5 +119,12 @@ Page({
     this.setData({
       isCollect
     })
+  },
+  handlePay(){
+    wx.showToast({
+      title: '暂时不支持支付功能~',
+      icon: 'none',
+      mask: true
+    });
   }
 })
